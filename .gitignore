@@ -1,0 +1,11 @@
+.claude/
+.swamp/
+.DS_Store
+# swamp repo scaffolding next to each extension (definitions, vault config, grants): never part of a package
+/*/vaults/
+/*/models/
+/*/grants/
+/*/workflows/
+/*/CLAUDE.md
+# work kept aside for later releases: never part of a package
+.wip/

@@ -1,0 +1,28 @@
+manifestVersion: 1
+name: "@jayr/wporg-plugin"
+version: "2026.11.19.1"
+license: MIT
+description: |
+  Watch a plugin on the WordPress.org directory. `sync` flags what is out of
+  date on the listing (Tested up to behind WordPress or WooCommerce, stale
+  release, unresolved support threads, Stable tag mismatch). `verify_release`
+  polls after you ship until WordPress.org really serves the version, and
+  fails the run when it does not. Read-only: anonymous GETs to WordPress.org
+  only, no credentials, no local files, no other program.
+repository: "https://github.com/jarutosurano/swamp-extensions"
+models:
+  - wporg_plugin.ts
+additionalFiles:
+  - README.md
+  - LICENSE
+  - SECURITY.md
+platforms:
+  - darwin-aarch64
+  - darwin-x86_64
+  - linux-x86_64
+  - linux-aarch64
+labels:
+  - wordpress
+  - woocommerce
+  - plugins
+  - release
