@@ -1356,10 +1356,12 @@ Deno.test("sync.execute honours staleDays and maxUnresolved, logs every flag and
       strict.listing.flags.map((f) => `${f.severity}:${f.code}`),
       ["warn:stale", "warn:support_unresolved"],
     );
-    assertEquals(strict.logged.length, 3);
-    assertStringIncludes(strict.logged[1], "warn stale: Last update");
+    assertEquals(strict.logged.length, 4);
+    assertEquals(strict.logged[0], "Reading example-plugin from WordPress.org");
+    assertStringIncludes(strict.logged[1], "example-plugin: warn (2 flags)");
+    assertStringIncludes(strict.logged[2], "warn stale: Last update");
     assertStringIncludes(
-      strict.logged[2],
+      strict.logged[3],
       "warn support_unresolved: 3 unresolved",
     );
     const loose = await run({ staleDays: 3650, maxUnresolved: 5 });
@@ -1711,4 +1713,12 @@ Deno.test("syncListing: an update stamped a little ahead of the local clock is t
   assertEquals((await at("2030-06-01 12:05am GMT")).daysSinceUpdate, 0);
   assertEquals((await at("2030-06-01 11:59pm GMT")).daysSinceUpdate, 0);
   assertEquals((await at("2030-06-03 12:05am GMT")).daysSinceUpdate, null);
+});
+
+Deno.test("the model carries an upgrade entry for its current version", () => {
+  assertEquals(model.version, "2026.11.19.2");
+  const last = model.upgrades[model.upgrades.length - 1];
+  assertEquals(last.toVersion, model.version);
+  const attrs = { slug: "hello-dolly", role: "watch" };
+  assertEquals(last.upgradeAttributes(attrs), attrs);
 });

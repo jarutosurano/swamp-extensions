@@ -1,6 +1,6 @@
 manifestVersion: 1
 name: "@jayr/wporg-plugin"
-version: "2026.11.19.1"
+version: "2026.11.19.2"
 license: MIT
 description: |
   Watch a plugin on the WordPress.org directory. `sync` flags what is out of
@@ -23,6 +23,7 @@ platforms:
   - linux-aarch64
 labels:
   - wordpress
+  - monitoring
   - woocommerce
   - plugins
   - release

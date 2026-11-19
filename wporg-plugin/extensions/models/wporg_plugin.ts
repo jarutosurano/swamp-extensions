@@ -819,8 +819,16 @@ type Ctx = {
 /** The @jayr/wporg-plugin model: sync and verify_release. */
 export const model = {
   type: "@jayr/wporg-plugin",
-  version: "2026.11.19.1",
+  version: "2026.11.19.2",
   globalArguments: GlobalArgsSchema,
+  upgrades: [
+    {
+      toVersion: "2026.11.19.2",
+      description:
+        "No schema change: sync logs a line when it starts; adds the monitoring label",
+      upgradeAttributes: (old: Record<string, unknown>) => old,
+    },
+  ],
   resources: {
     listing: {
       description: "Directory state of the plugin and what is out of date",
@@ -841,6 +849,9 @@ export const model = {
         "Read the plugin's WordPress.org listing and SVN trunk and flag what is out of date (anonymous GETs only)",
       arguments: SyncArgsSchema,
       execute: async (args: z.infer<typeof SyncArgsSchema>, context: Ctx) => {
+        context.logger.info("Reading {slug} from WordPress.org", {
+          slug: context.globalArgs.slug,
+        });
         const listing = await syncListing(
           context.globalArgs,
           args.staleDays,
