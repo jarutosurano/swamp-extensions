@@ -1,0 +1,29 @@
+manifestVersion: 1
+name: "@jayr/kinsta"
+version: "2026.11.20.1"
+license: MIT
+description: |
+  Sites, environments and backups of a Kinsta company through the Kinsta API.
+  `sites` lists every site with its environments. `backups` lists the backups
+  of one environment. `create_backup` asks for one manual backup and waits
+  until Kinsta lists it; it refuses at the manual limit and finds a recent
+  backup with the same tag again instead of making a second one. It never
+  restores, deletes or pushes anything. The API key comes from a vault and is
+  never logged or stored.
+repository: "https://github.com/jarutosurano/swamp-extensions"
+models:
+  - kinsta.ts
+additionalFiles:
+  - README.md
+  - LICENSE
+  - SECURITY.md
+platforms:
+  - darwin-aarch64
+  - darwin-x86_64
+  - linux-x86_64
+  - linux-aarch64
+labels:
+  - kinsta
+  - wordpress
+  - hosting
+  - backup
