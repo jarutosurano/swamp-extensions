@@ -1434,7 +1434,11 @@ Deno.test("createBackup does not take another backup for its own", async () => {
 
 Deno.test("the model declares its type, version, methods and a sensitive key", () => {
   assertEquals(model.type, "@jayr/kinsta");
-  assertEquals(model.version, "2026.11.20.1");
+  assertEquals(model.version, "2026.11.20.2");
+  // the one upgrade so far changes nothing
+  assertEquals(model.upgrades.map((u) => u.toVersion), ["2026.11.20.2"]);
+  const kept = { apiKey: "x", companyId: "y" };
+  assertEquals(model.upgrades[0].upgradeAttributes(kept), kept);
   assertEquals(Object.keys(model.methods), [
     "sites",
     "backups",

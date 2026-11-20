@@ -867,8 +867,16 @@ const stored = ({ createdAtMs: _ms, ...b }: Backup) => b;
 /** The @jayr/kinsta model: sites, backups and create_backup. */
 export const model = {
   type: "@jayr/kinsta",
-  version: "2026.11.20.1",
+  version: "2026.11.20.2",
   globalArguments: GlobalArgsSchema,
+  upgrades: [
+    {
+      toVersion: "2026.11.20.2",
+      description:
+        "No code or schema change: published again so the registry record carries the review report",
+      upgradeAttributes: (old: Record<string, unknown>) => old,
+    },
+  ],
   resources: {
     sites: {
       description:

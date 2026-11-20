@@ -1,6 +1,6 @@
 manifestVersion: 1
 name: "@jayr/kinsta"
-version: "2026.11.20.1"
+version: "2026.11.20.2"
 license: MIT
 description: |
   Sites, environments and backups of a Kinsta company through the Kinsta API.
